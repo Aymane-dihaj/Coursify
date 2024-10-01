@@ -1,0 +1,19 @@
+version: '3'
+services:
+  frontend:
+    image: frontend
+    container_name: frontend
+    build:
+      context: ./frontend  # Path to the frontend directory
+      dockerfile: Dockerfile  # The Dockerfile to use
+    ports:
+      - "3000:3000"  # Map container port 3000 to local port 3000
+    volumes:
+      - ./frontend:/app  # Mount local frontend directory to container for live updates
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:4000  # Replace with your backend API URL
+    networks:
+      - my_network
+
+networks:
+  my_network:
